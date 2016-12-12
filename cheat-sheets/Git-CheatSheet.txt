@@ -1,0 +1,27 @@
+/*-------------------------------------
+||
+|| Git Commands
+||
+-------------------------------------*/
+
+/*-------------------------------------
+| Git Setup
+-------------------------------------*/
+/* Initializes a dir -------------------------------*/
+git init
+
+/* Initializes a Bare Repo dir -------------------------------*/
+git init --bare
+
+/* Add a remote alias with the name origin that points to the remote git -------------------------------*/
+git remote add origin git@github.com:meatch/guides.git
+
+
+/*-------------------------------------
+| Git Add/Commit/Push
+-------------------------------------*/
+git add .
+git commit -m "Message for commit."
+git push -u origin master
+
+

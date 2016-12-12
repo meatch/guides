@@ -1,0 +1,92 @@
+/*-------------------------------------
+||
+|| Ideal Workflow
+||
+-------------------------------------*/
+
+/*-------------------------------------
+||
+|| Overall Process
+||
+-------------------------------------*/
+Local
+	Everything Spawns from here
+		git, npm & package.json, gulp
+	rsync production||staging server files
+	Database
+		1) Export Import database to local system
+		2) Keep local connected to server database if no data will be altered.
+
+Production
+	Push changes to the Server
+	Merge Database (live website still grows during development)
+
+Staging
+	Works similar to the production - for project dev that needs to be shared
+
+
+/*-------------------------------------
+||
+|| Setup
+||
+-------------------------------------*/
+Github repository of bare website
+	(index.php, package.json, .gitignore, gulpfile.js, assets[sass, bootstrap, jquery])
+git pull bare website
+run npm install
+configure gulpfile.js point to assets folder.
+
+
+/*-------------------------------------
+||
+|| Details
+||
+-------------------------------------*/
+
+/*-------------------------------------
+| RSync Live site changes to local
+-------------------------------------*/
+assumes you have passwordless ssh - otherwise it asks for pass?
+
+Flags
+-chavzP = forces overwrite so it mirrors live.
+-hvrPt  = If you wish to not overwrite local files that are newer than the server.
+
+SSH root@ip-or-domain.com
+
+Remote Dir
+/path/to/remote/dir/
+
+Local Dir
+	- could probably just use the period .
+	- have not tested it though
+./
+
+Examples
+rsync -hvrPt --stats username@ip-or-domain.com:/path/to/remote/dir/ ./
+rsync -hvrPt --stats root@ip-or-domain.com:/home/tca/public_html/dev.teamcrossfitacademy.com/wp-content/themes/tca/ ./
+
+/*-------------------------------------
+| Local Gulp
+-------------------------------------*/
+watch
+	Sass Conversion and Min - no vanilla CSS
+	JavaScript Concat and Minification
+
+/*-------------------------------------
+| Local Testing Server
+-------------------------------------*/
+Optional Local Database
+Keep this separate - we can always download the db and run it locally if need be.
+
+/*-------------------------------------
+| Gulp Git Push When Ready to go live
+-------------------------------------*/
+gulp gitsend -m "Message for change" [Git add, commit, push]
+
+
+
+
+
+
+

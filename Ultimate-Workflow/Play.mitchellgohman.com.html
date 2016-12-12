@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://playground.mitchellgohman.com/ -->
+<html><script id="tinyhippos-injected">if (window.top.ripple) { window.top.ripple("bootstrap").inject(window, document); }</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>Meatchland</title>
+	</head>
+	<body cz-shortcut-listen="true">
+		<h1>Meatchland</h1>
+
+					<h2>Chapter 5: The Ultimate SSH, Git, Gulp Workflow</h2>
+			<div class="content"><h2>What is Gulp?</h2>
+<p><span style="color: #ff0000;">It automates processes…</span></p>
+<h2>RSync Live site changes to local</h2>
+<p>As a site grows on its own you are probably gonna want to download the current version of it. Into you existing local setup.</p>
+<p><strong>Example</strong><br>
+rsync -hvrPt –stats username@ip-or-domain.com:/path/to/remote/dir/ ./</p>
+<p>The above assumes you have <a href="http://playground.mitchellgohman.com/2016/12/04/chapter-2-terminal-ssh-and-keyless-password/">passwordless ssh</a> – otherwise it asks for pass?</p>
+<p><strong>Flags</strong><br>
+-chavzP = forces overwrite so it mirrors live.<br>
+-hvrPt = If you wish to not overwrite local files that are newer than the server.</p>
+<p><strong>SSH</strong><br>
+root@104.168.148.183</p>
+<p><strong>Remote Dir</strong><br>
+/path/to/remote/dir/</p>
+<p><strong>Local Dir </strong><br>
+– could probably just use the period .<br>
+– have not tested it though<br>
+./</p>
+<p>&nbsp;</p>
+<h2>Local Gulp</h2>
+<p><strong>watch</strong><br>
+Sass Conversion and Min – no vanilla CSS<br>
+<span style="color: #ff0000;">JavaScript Concat and Minification</span></p>
+<h2>Local Testing Server</h2>
+<p><strong>Optional Local Database</strong><br>
+Keep this separate – we can always download the db and run it locally if need be.</p>
+<p><strong>Running Local Server</strong><br>
+<span style="color: #ff0000;">gulp serv</span></p>
+<h2>Gulp Git Push When Ready to go live</h2>
+<p>gulp gitsend -m “Message for change” [Git add, commit, push]</p>
+</div>
+					<h2>Chapter 4: Set Up Git Directly On Your Web Server</h2>
+			<div class="content"><p>This series examines what I have found to be the <strong>Ultimate SSH&nbsp;and Git setup</strong>. It assumes you have familiarity with the following:</p>
+<ul>
+<li>Web Servers – how to get around, what the public directory is</li>
+<li>A familiarity with terminal commands and bash</li>
+</ul>
+<p>I have to give credit to this <a href="https://tylercipriani.com/blog/2012/10/21/move-existing-website-to-git/" target="_blank">website</a> – ’cause he was the first person to actually break this down into terms that made sense to me – and it just worked. It is possible that I have been playing with this long enough to begin to grok the&nbsp;Klingon&nbsp;language – so there is that too. I changed the order to optimize the flow – moving from live to local that is.</p>
+<p>You can Git any folder on your web server. If you are building a web application, this often includes the root directory (one directory up from your <em>public_html&nbsp;</em> or&nbsp;<em>htdocs</em> folder), but its not required.</p>
+<h3><strong>1) Download a copy of your website</strong></h3>
+<p>If you do not have a local copy of your website, now’s the time to download it. This includes all dependencies (images, css, js).I used my FTP program to do this – it allows me to see hidden files, most FTP programs do (<a href="https://panic.com/transmit/" target="_blank">Transmit</a>) – and to sync missing files. If you are familiar with rsync, and your server supports it – you can use command line to sync your server.</p>
+<p style="padding-left: 30px;">Truth be told, on my server I am serving up some videos, and I didn’t&nbsp;want Git to manage these. If you look at most web servers there are a bunch of files that don’t matter to you, but help your server run. You will use a .gitignore file to tell Git to leave those out of the mix. In other words, you can download only the parts&nbsp;you plan on using Git to manage. Keep in mind – your folder structure needs to be identical to the server. So don’t move your CSS folder to a new location, download them as is. And, don’t forget hidden files and folders that are needed (files and folders that have a&nbsp;dot in front of their name e.g. .htaccess).</p>
+<h3><strong>2) Setup a bare repo on your web server (remote server)</strong></h3>
+<ol>
+<li><strong>SSH into your remote host</strong></li>
+<li><strong>Create a new folder</strong> in our rot directory (right above your public directory), where domain.com is your domain.com.<br>
+<strong>mkdir domain.com.git &amp;&amp; cd domain.com.git</strong><br>
+This will make the dir, and CD you into the directory<br>
+note:&nbsp;when I first read this I thought it was odd we did not place this into the folder we are using Git on – you will see that we alter this to point to whichever directory we are running git on. This is just so we don’t mess up the existing website.</li>
+<li><strong>Create a Bare Git Repository&nbsp;</strong>(repository without an initial workspace)<br>
+<strong><span class="kw">git</span> init –bare</strong></li>
+<li><strong>cd into the hooks directory<br>
+cd hooks </strong></li>
+<li>Create a new bash post-receive hook that will be triggered whenever an update is pushed to this new bare repository.<br>
+<strong>touch post-receive</strong></li>
+<li><strong>Open post-receive</strong> to edit in the terminal<br>
+<strong>nano post-receive</strong></li>
+<li>Paste the following code: (where “/path/to/your/htdocs/directory” is the actual path to the directory you are using git)<br>
+<strong><span class="co">#!/bin/bash</span> </strong><br>
+<strong><span class="ot">GIT_WORK_TREE=</span>/path/to/your/htdocs/directory <span class="kw">git</span> checkout -f</strong></li>
+<li><strong>Exit and Save</strong><br>
+<strong>control + x</strong><br>
+<strong>y</strong></li>
+<li>Make sure its&nbsp;executable by <strong>updating its permissions</strong><br>
+<strong>chmod +x post-receive</strong></li>
+</ol>
+<h3><strong>3) Initialize Git in Your&nbsp;Local Copy (local)</strong></h3>
+<ol>
+<li>Make a noticeable change to your local website and save (I prefixed the title with the current time – great for testing)</li>
+<li><strong>Using Terminal –&nbsp;cd&nbsp;into the&nbsp;local copy of your website</strong><br>
+<em>tip:</em> you can figure out the directory by dragging the folder to the terminal. So type <strong>cd</strong>, &nbsp;and then drag the folder to the terminal – it will add the path where the terminal cursor was. A quick&nbsp;way to get to the GUI folder – especially if its on an external Volume deep in the woods.</li>
+<li>Initialize Git<br>
+<strong><span class="kw">git</span> init</strong></li>
+<li>Add the contents of the current directory to the git repository (the period is intentional)<br>
+<strong>git add .</strong></li>
+<li>Commit all your newly added files to the repo<br>
+<strong>git commit -m “My First Commit”</strong></li>
+</ol>
+<h3>4) Create a .gitignore file (local)</h3>
+<p>The <strong>.gitignore</strong> text file tells git which files and folders to leave out of the synching process. Create this file in the main folder of your local git repository. If you have files and folders in your local copy that you do not wish to push to the server – then you should add them to this file. They are line separated definitions that look like the following:</p>
+<p style="padding-left: 30px;">#this is a comment and is ignored, great for organizing your ignore files and folders<br>
+.env<br>
+sensitive-passwords.txt<br>
+img/videos<br>
+*.psd<br>
+# the star is a wildcard – so *.psd says any file that ends in .psd</p>
+<p><em>Note: once you push your changes to your server – it will add the git ignore to your server as well. So you should add the server side directories you wish to ignore as well.</em></p>
+<p>See my <a href="http://playground.mitchellgohman.com/wp-content/uploads/2016/12/gitignore-sample.txt" target="_blank">example .gitignore</a> from Hostwinds server – I also wanted to keep out my large video files. Not that you have to – I just don’t plan on managing those through Git as my future videos will either be on YouTube, Vimeo or Join.me.</p>
+<h3>5) Push&nbsp;local to&nbsp;live (local)</h3>
+<ol>
+<li><strong>Add the&nbsp;remote hook</strong> to your local git</li>
+<li><strong>git remote add live&nbsp;ssh://user@domain.com/path/to/domain.com.git</strong>
+<ol>
+<li>where live will be the name we will use to push to that server. You can have multiple servers if you like – each with their own name.</li>
+<li>and &nbsp;<span style="text-decoration: underline;">user@domain.com</span> is your SSH user and domain or IP</li>
+<li>and&nbsp;<span style="text-decoration: underline;">domain.com.git</span> is the git folder you made on your web server</li>
+<li><em><span style="text-decoration: underline;">tip:</span></em> if you are not sure what the path is to your remote git folder, SSH in to your remote host. CD to the folder, and use the following&nbsp;command:<br>
+<strong>pwd</strong><br>
+This will <strong>p</strong>rint&nbsp;the current <strong>w</strong>orking <strong>d</strong>irectory for you. Copy and paste</li>
+</ol>
+</li>
+<li><strong>Push the changes we made earlier to the server</strong><br>
+<strong><span class="kw">git</span> push -u live&nbsp;master</strong></li>
+</ol>
+<p>&nbsp;</p>
+<h2></h2>
+</div>
+					<h2>Chapter 3: Installing Git</h2>
+			<div class="content"><p>This series examines what I have found to be the <strong>Ultimate SSH&nbsp;and Git setup</strong>. It assumes you have familiarity with the following:</p>
+<ul>
+<li>Web Servers – how to get around, what the public directory is</li>
+<li>A familiarity with terminal commands and bash</li>
+</ul>
+<p>You will want to install Git locally, and make sure your web server has Git installed and enabled.</p>
+<h2>Install Git on your web server</h2>
+<p>Make sure your web server has Git installed and enabled. Most do these days, and you can either <a href="https://www.google.com/webhp?sourceid=chrome-instant&amp;ion=1&amp;espv=2&amp;ie=UTF-8#q=install%20git%20on%20my%20web%20host" target="_blank">do it manually</a>, or just ask your web host support to help you install it. You can run a test to see if it is already there:</p>
+<ol>
+<li><strong>Open Terminal</strong></li>
+<li><strong>SSH into your remote host</strong></li>
+<li>Enter the following:<br>
+<strong>git –version</strong></li>
+<li>If you get a git version returned you are good to go (e.g. git version 1.7.3.4)</li>
+</ol>
+<p>To be fair, from what I have read–not many shared hosting companies have Git installed. And you may need to jump through some hoops to install it. I would contact your web host support – they can tell you right away what is possible.</p>
+<h2>Install Git Locally</h2>
+<p>Easiest to follow their instructions for your system</p>
+<p><a href="https://www.git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">https://www.git-scm.com/book/en/v2/Getting-Started-Installing-Git</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+					<h2>Chapter 2: Terminal,  SSH and Keyless Password</h2>
+			<div class="content"><p>This series examines what I have found to be the <strong>Ultimate SSH&nbsp;and Git setup</strong>. It assumes you have familiarity with the following:</p>
+<ul>
+<li>Web Servers – how to get around, what the public directory is</li>
+<li>A familiarity with terminal commands and bash</li>
+</ul>
+<h2>The Terminal, Bash, and Shell Scripts</h2>
+<p>In order to leverage <strong>Git</strong>, you essentially are moving over to the<strong> terminal (e.g. shell, command line)</strong> – you feel like a regular hacker in this world. And like my feelings with Git as a whole – felt like overkill when I have this wonderful GUI that can do all of it and more. Yet there is something that is pretty slick about using the terminal. Especially once you get the hang of it. You feel like you are one with the machine. And processes on the server are so much faster than over FTP. Because you are actually working on that machine. Using its resources. Very powerful. Very magical. Very cool. <strong>Bash&nbsp;</strong>is a text file script you can create that will execute a series of terminal commands. So if there is something you are doing a lot of – bash can be used to automate these tasks. If you have not gotten at least the basics of terminal yet – you should definitely dig in to the basics – otherwise the rest of this will be challenging to understand. It gives you the <em>“Why Water is Wet.”</em></p>
+<ul>
+<li><a href="http://www.hackmac.org/articles/bash/bash-101-history-of-bash-and-terminal/">Bash 101</a>: really quick and good primer</li>
+<li><a href="https://www.youtube.com/watch?v=_3om0Kt43wQ">Creating and Using Bash Profile Video</a></li>
+<li><a href="https://www.codecademy.com/en/courses/learn-the-command-line/lessons/manipulation/exercises/mv">CodeAcademy: Learn the Command Line</a></li>
+</ul>
+<h2>SSH</h2>
+<p><strong>SSH</strong>&nbsp;(Secure SHell) – it allows you to log into your Webserver (or any computer) and use terminal on that computer. This is the most important piece – as Git&nbsp;is run through the terminal. You can, set up a GUI for Git. But I would suggest using the GUI apps once you understand fully how git is working.</p>
+<p>Most shared hosting services will let you turn on a single SSH account for all of your content. If you have a virtual or dedicated server – its pretty standard – and sometimes on by default. Regardless, contacting your hosting support will let you know how to enable it, and get you connected.</p>
+<p>Once you have SSH enabled, and you have your credentials – you will open a terminal and type something that looks like:&nbsp;<strong>ssh username@domain.com</strong>, press return and provide your password once prompted.</p>
+<ul>
+<li><strong>ssh</strong>&nbsp;is the prefix that tells the terminal we are Secure SHelling into a remote computer.</li>
+<li><strong>username</strong> is the username on your account (if you only have one shared account – it is probably root)</li>
+<li><strong>domain.com</strong> is your domain. Sometimes the domain won’t cut it – so it’s your web server IP address.</li>
+</ul>
+<h2>Enable SSH in the WHM Cpanel</h2>
+<p>If you don’t know what WHM Cpanel is–you are most likely on a shared server (standard) and can ignore this part. If you have WHM Cpanel manager (Virtual and Dedicated Servers), you will probably have to manually enable SSH.</p>
+<ol>
+<li><strong>Log into WHM</strong></li>
+<li>Choose <strong>Manage Shell Accounts</strong></li>
+<li><strong>Check Normal Shell</strong> radio button next to the account
+<ol>
+<li>It auto saves for you – nothing else to do here.</li>
+</ol>
+</li>
+<li><strong>Open terminal and test SSH access</strong>
+<ol>
+<li>ssh username@ip-or-domain.com</li>
+<li>provide account password</li>
+</ol>
+</li>
+</ol>
+<h2>Keyless SSH Password</h2>
+<p>Many of the processes we run with&nbsp;Git will go through SSH. If you have to enter your password every time you make a change – you will lose your mind. So instead, we use Keyless Passwords which consist in&nbsp;2 parts</p>
+<ol>
+<li>You generate a local encrypted pair of keys (private and public)</li>
+<li>The public key is placed on your web server and acts as a way to verify you are you.</li>
+</ol>
+<p><strong>Public Key:</strong> This gets stored on the remote host proving you have access to the account. Original also stays on your local computer.</p>
+<p><strong>Private Key:</strong> this remains on your system. The public key is used to match the private encrypted key – identifying you as valid access to the server(s)</p>
+<h3>Part A) Create encrypted, local public and private keys</h3>
+<p>You only have to do this once. You can use the same encrypted key pairs for all connection – it identifies you individually as valid. So you can skip to Part B.</p>
+<p><em>When I say execute, I mean type the command and press return.</em></p>
+<ol>
+<li><strong>open terminal&nbsp;</strong></li>
+<li>Head to your home folder (should be there by default), to be sure execute:<br>
+<strong>cd ~/</strong></li>
+<li>List the contents (including hidden files <strong>-a</strong> and list details <strong>-l</strong>)<br>
+<strong>ls -al</strong></li>
+<li><strong>If a&nbsp;.ssh folder already exists</strong> – you may have already created keys – so be careful that you do not overwrite someone elses keys. You may want to rename&nbsp;the .ssh folder just in case and start from scratch. (mv&nbsp;.ssh/ .ssh-bakup)<br>
+<strong>If there is no .ssh folder,</strong>&nbsp;or you are now creating from scratch make a new .ssh folder.<br>
+<strong>mkdir .ssh</strong></li>
+<li>Move into the .ssh folder<br>
+<strong>cd .ssh</strong></li>
+<li>Create the Keys: where your_email@example.com is your personal email – this is optional – but I believe helps on teams in identifying who is who when logging into the server.<br>
+<strong>ssh-keygen -t rsa -b 4096 -C “your_email@example.com”</strong></li>
+<li>When it asks for a filename, don’t type anything in, just press return</li>
+<li>Give it a secure SSH passphrase (Highly recommended)<br>
+There is a concern if your system is comprimised, someone&nbsp;can get to the public and private keys&nbsp;without using the password and now they have SSH to your server.If you do decide to add a passphrase, make sure your OS saves it as a keychain – otherwise it will ask you every time you SSH. It should automatically save to your OSX keychain – use the following instructions if it does not.<br>
+<a href="https://help.github.com/articles/working-with-ssh-key-passphrases/">https://help.github.com/articles/working-with-ssh-key-passphrases/</a></li>
+<li><strong>Add your new key to the SSH-Agent</strong> – the program that keeps track of all of this stuff.<br>
+<strong>ssh-add ~/.ssh/id_rsa</strong></li>
+</ol>
+<h3>Part B) Add public key to your server</h3>
+<ol>
+<li>Open terminal and SSH into your remote host<br>
+<strong>ssh username@ip-or-domain.com</strong> and <strong>password</strong> (until you finish this you have to give your pass)</li>
+<li>Make sure the remote server has a .ssh/ in the account root directory.<br>
+<strong>ls -al</strong></li>
+<li>if it does not exist create one<br>
+<strong>mkdir .ssh</strong></li>
+<li>Open another terminal (local/home)<br>
+<strong>cd ~/</strong></li>
+<li>Run the following in your local terminal, where user@ip-or-domain.com is your personal SSH<br>
+<strong>ssh username@ip-or-domain.com ‘cat &gt;&gt; ~/.ssh/authorized_keys’ &lt; ~/.ssh/id_rsa.pub</strong><br>
+<em>The first time you run the following command the remote server will ask for your password.</em><br>
+<em> example: ssh enspyred@104.168.148.183 ‘cat &gt;&gt; ~/.ssh/authorized_keys’ &lt; ~/.ssh/id_rsa.pub</em></li>
+<li>Permissions are important, otherwise it won’t work. So back on the remote server terminal window<br>
+<strong>chmod 700 ~/.ssh</strong><br>
+<strong> chmod 600 ~/.ssh/authorized_keys</strong></li>
+</ol>
+<p>Upon success you should be able to log out, and log back in without terminal asking for a password.</p>
+</div>
+					<h2>Chapter 1: Introduction</h2>
+			<div class="content"><p>This series examines what I have found to be the <strong>Ultimate SSH&nbsp;and Git setup</strong>. It assumes you have familiarity with the following:</p>
+<ul>
+<li>Web Servers – how to get around, what the public directory is</li>
+<li>A familiarity with terminal commands and bash</li>
+</ul>
+<h2>I am embracing Git as my primary workflow</h2>
+<p>I have finally committed to using Git to manage my websites. I have been <a href="https://www.bnj.com/blog/cowboy-coding-pink-sombrero/" target="_blank">flying commando</a> with <a href="https://panic.com/transmit/" target="_blank">Transmit</a> (FTP) and <a href="https://atom.io/" target="_blank">Atom’s</a> FTP plugin remote-sync. While this is quick, and requires very little know-how – it does place my sites at risk for no versioning and fallback. As well as being able to really test things locally. Essentially my workflow has been as follows:</p>
+<ol>
+<li>Develop initial website&nbsp;on a live testing server – typically a subdomain &nbsp;(e.g. dev.domain.com)</li>
+<li>Once the client is happy – we set it live (these days just by changing the folder to be the new public folder – lickity split)</li>
+<li>All future changes are managed on the server (truth be told – if its a major revision, I will port the site to a test environment again. e.g. dev.domain.com). Once changes approved, port them over to the live.</li>
+</ol>
+<p>Many problems with this – and the most glaring is – my development is exposed to the public when I work live. Not good for the client – errors can take a site offline if something breaks.</p>
+<h2>I have used Git in the past</h2>
+<p>I have used Git in the past – ’cause I wanted to understand it. Everyone’s talks about it as the bees knees – and if you aren’t doing it there is something wrong with you. : ) As a teacher too – I really wanted to learn Git&nbsp;to be up to snuff and give my students all of what is possible.</p>
+<p>My whole experience was <strong>WHY DOES IT HAVE TO BE SO FRICK’N DIFFICULT!!</strong> The pros&nbsp;never seemed to&nbsp;outweigh the costs of having to set all of this up. And the documentation is definitely challenging for the newbie – unless you have a true programming background – its confusing how it does its magic&nbsp;(where to connect what, etc). It also seemed like overkill for me – since I am essentially a one-man band. I could see how large teams could benefit from&nbsp;being able to&nbsp;check out files, merge and correct conflicts and such – but for someone who manages all of it – it felt like using a bazooka when all I needed was a knife.</p>
+<h2>Give Git&nbsp;a Chance</h2>
+<p>Granted, I get complaints like this from my students about HTML, CSS and JS – so I get it. It’s something new I am learning, and I need to give it the proper chance to percolate in the brain. And this weekend I finally did. The future seems bright, and I am excited to finally be tackling and using this beast on my sites. Time will tell how it all pans out.</p>
+<p>As a teacher I love simplifying things – breaking it down so others can absorb it. I am also self taught – and when I read articles online I am always thinking about – how can I explain this to others such that they really get it. So I have challenged myself in creating this series in my blog – to help others–AND because I know a few months from now when I have to do all of this shit again – I will be like-what goes where again? As you will see – a lot of this is like following a recipe. You don’t have to memorize the steps – just refer to them when you need them. And in no time you will have a pie. Easy as pie?</p>
+<h2>What is Git</h2>
+<p>Git is a version control system &nbsp;– a fancy way of saying you can:</p>
+<ul>
+<li>roll things back if you make a mistake.</li>
+<li>create branches without messing with the master version of your website</li>
+<li>work in teams and each team member can work on their branch without worrying about messing things up. When a teammate merges their branch, Git will let you know if there are differences in the source – and allow you to correct any problems on the fly. Everyone then pulls these changes so all instances are in sync</li>
+</ul>
+<p>Pretty awesome for all of the above.</p>
+<h2>What is Github</h2>
+<p><a href="https://github.com/">Github</a> is a place to store you code if you choose to (it’s free). It uses Git, and gives you the ability to manage your web content. You could even use Github as your web server – so I have heard. But most people use it to develop their code, and then push the master version to their live hosted website.</p>
+<h2>Github !=&nbsp;Git</h2>
+<p>When I first heard of Github, I thought that was the only way to do it. I collapsed the two – thinking they were one and the same. But you can install Git on your web server (webhost) and push directly to it–cutting out the middle man (Github). This is what makes sense to me as a one-man-band. If you are working on a team – you may want to consider using Github (or alternatives&nbsp;like bitbucket) to work on your projects, and then use <a href="https://developer.github.com/webhooks/">Web Hooks</a> to push your changes to the live server. I am gonna explore this one further – just to say I can. For now, I am gonna convert all of my existing websites and call it a day.</p>
+<h2>Exposure and Security Concerns</h2>
+<p>My other concern was&nbsp;security. I always saw Github as exposed to the public – and I was afraid of exposing my usernames and passwords.&nbsp;Git actually takes care of this in the .gitignore – you can say which files to ignore – and these never get posted to Github. Github is exposed to the public – which promotes open source. This means someone could find your code – clone it and work off of your system. if you do have a private project you can use Bitbucket (or alternative). I think &nbsp;read somewhere that Github also offers this feature – but at cost. Don’t quote me on that one. Point is, there are options to making it private.</p>
+</div>
+		
+	
+</body></html>

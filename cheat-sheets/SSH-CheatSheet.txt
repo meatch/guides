@@ -1,0 +1,78 @@
+/*-------------------------------------
+||
+|| SSH Cheat Sheet
+||
+-------------------------------------*/
+/*-------------------------------------
+| Connection
+-------------------------------------*/
+ssh username@ip-or-domain.com
+password, unless passwordless SSH has been set up.
+
+/*-------------------------------------
+| Move/Rename/Duplicate/Delete
+-------------------------------------*/
+/* Move/Rename -------------------------------*/
+mv src/dir/ dest/dir
+
+/* delete -------------------------------*/
+rm -rf path/to/dir
+
+/*-------------------------------------
+| Export MySQL
+-------------------------------------*/
+mysqldump --add-drop-table -h localhost -u {username} -p {database} > path/to/name-of-exported-file.sql
+
+/*-------------------------------------
+| RSYNC :: remote sync of folder to local or another directory
+-------------------------------------*/
+rsync -a src/dir/ dest/dir
+
+/*-------------------------------------
+| CHMOD Change permissions
+-------------------------------------*/
+chmod -R 755 path/to/file.txt
+
+/* Recursively -------------------------------*/
+chmod -R 755 *
+
+
+/*-------------------------------------
+| CHOWN Change Owner
+-------------------------------------*/
+chown -R root:root ./.[^.]*
+chown -R root:root *
+
+chown -R enspyred:enspyred ./.[^.]*
+chown -R enspyred:enspyred *
+
+chown -R meatch:meatch meatch/./.[^.]*
+chown -R meatch:meatch *
+
+
+chown -R perennial:perennial perennial/*
+chown -R perennial:perennial perennial/./.[^.]*
+
+chmod -R 755 perennial/*
+chmod -R 755 meatch/*
+
+Make sure root owns "../"
+Could not make that part owned by account - still don't know why.
+chown root:root ../
+
+
+/*-------------------------------------
+| Monitoring Logs
+-------------------------------------*/
+tail -f /path/to/error_log
+
+
+/*-------------------------------------
+| Keyless SSH
+-------------------------------------*/
+ssh username@ip-or-domain.com 'cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pub
+
+/* permssions are impportant, otherwise it won't work -------------------------------*/
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+
