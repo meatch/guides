@@ -18,15 +18,50 @@ mv src/dir/ dest/dir
 /* delete -------------------------------*/
 rm -rf path/to/dir
 
+
+/* Create File -------------------------------*/
+touch FILE.TXT
+
+
+/* Root Folder Size -------------------------------*/
+df -h
+
+/* All Files and Dirs Sorted by Size -------------------------------*/
+du -ah | sort -h
+
+/* Size of folder and contents -------------------------------*/
+du -ms FOLDER
+
+
 /*-------------------------------------
 | Export MySQL
 -------------------------------------*/
 mysqldump --add-drop-table -h localhost -u {username} -p {database} > path/to/name-of-exported-file.sql
 
 /*-------------------------------------
+| Import MySQL
+-------------------------------------*/
+mysql -h localhost -u {username} -p {database} < path/to/name-of-exported-file.sql
+
+
+mysqldump --add-drop-table -h localhost -u {username} -p {database} > path/to/name-of-exported-file.sql
+
+/*-------------------------------------
 | RSYNC :: remote sync of folder to local or another directory
 -------------------------------------*/
 rsync -a src/dir/ dest/dir
+rsync -hvrPt --stats username@ip-or-domain.com:/path/to/remote/dir/ ./
+
+/* RSYNC: Exclude folders & files
+http://articles.slicehost.com/2007/10/10/rsync-exclude-files-and-folders
+-------------------------------*/
+rsync -hvrPt --stats --exclude 'public_html/assets/repo' --exclude 'public_html/assets/submissions' enspyred@104.168.148.183:/home/enspyred ./
+rsync -hvrPt --stats --exclude 'public_html/assets/submissions' enspyred@104.168.148.183:/home/enspyred ./
+rsync -hvrPt --stats --exclude 'public_html/assets/submissions' enspyred@104.168.148.183:/home/enspyred/* ./
+
+Flags
+-chavzP = forces overwrite so it mirrors live.
+-hvrPt = If you wish to preserve local files that are newer than the server.
 
 /*-------------------------------------
 | CHMOD Change permissions
@@ -35,6 +70,16 @@ chmod -R 755 path/to/file.txt
 
 /* Recursively -------------------------------*/
 chmod -R 755 *
+
+
+/* The Right Way to Change files and folders in a dir for web -------------------------------*/
+https://stackoverflow.com/questions/3740152/how-do-i-set-chmod-for-a-folder-and-all-of-its-subfolders-and-files-in-linux-ubu
+To change all the directories to 755 (drwxr-xr-x):
+
+find /opt/lampp/htdocs -type d -exec chmod 755 {} \;
+To change all the files to 644 (-rw-r--r--):
+
+find /opt/lampp/htdocs -type f -exec chmod 644 {} \;
 
 
 /*-------------------------------------
@@ -48,7 +93,6 @@ chown -R enspyred:enspyred *
 
 chown -R meatch:meatch meatch/./.[^.]*
 chown -R meatch:meatch *
-
 
 chown -R perennial:perennial perennial/*
 chown -R perennial:perennial perennial/./.[^.]*
@@ -75,4 +119,16 @@ ssh username@ip-or-domain.com 'cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pu
 /* permssions are impportant, otherwise it won't work -------------------------------*/
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
+
+
+/* Removing the Pass Phrase -------------------------------*/
+ssh-keygen -p
+enter the path to the KEY - I think you can leave this blank for default - but I did the following and it worked.
+~/.ssh/id_rsa.pub
+enter the old pass phrase
+enter nothing, just press return
+enter nothing, just press return
+
+
+
 

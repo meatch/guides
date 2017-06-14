@@ -25,3 +25,19 @@ git commit -m "Message for commit."
 git push -u origin master
 
 
+/*-------------------------------------
+| Renaming an Remote Alias Repo Name
+-------------------------------------*/
+git remote -v
+git remote rename origin destination
+
+where origin is the old name, destination is the new.
+
+/*-------------------------------------
+| Change a Server Path connected to an Remote Alias Repo Name
+-------------------------------------*/
+git remote -v
+git remote set-url origin https://github.com/USERNAME/OTHERREPOSITORY.git
+
+
+
