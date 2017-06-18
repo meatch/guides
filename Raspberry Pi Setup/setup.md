@@ -106,8 +106,7 @@ Had to do this last time I clean installed pi. So my Mac would forget the older 
 Set Up Screen Sharing for Mac Access
 [Follow Steps Here](https://stackoverflow.com/questions/32361132/screen-sharing-between-raspberry-pi-and-mac-osx)
 
-You need to create the following, otherwise it won't let you write out.
-# ~/.config/autostart/x11vnc.desktop
+You need to create the following, otherwise it won't let you write out. ~/.config/autostart/x11vnc.desktop
     cd ~/.config/
     mkdir autostart
     nano x11vnc.desktop
