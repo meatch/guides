@@ -10,6 +10,7 @@ My little Raspberry Pi Project - set up as Media Player for my TV. This includes
 3. [Add Bluetooth Periphs](#bluetooth-periphs)
 4. [Enable SSH](#enable-ssh)
 5. [Mac Screen Sharing](#mac-screen-sharing)
+6. [Chromeos for Netflix] (#chromeos-for-netflix)
 
 
 ## Set Locale
@@ -110,6 +111,20 @@ You need to create the following, otherwise it won't let you write out. ~/.confi
     cd ~/.config/
     mkdir autostart
     nano x11vnc.desktop
+
+
+## Prevent From Sleeping
+[Try This Out](https://www.bitpi.co/2015/02/14/prevent-raspberry-pi-from-sleeping/)
+
+## Netflix
+[Video Says it all](https://www.youtube.com/watch?v=gAL3v5uNH2E)
+Out of the box. Chromium does not come with a certain plugin for playing Netflix
+
+    wget https://github.com/kusti8/chromium-build/releases/download/netflix-1.0.0/chromium-browser_56.0.2924.84-0ubuntu0.14.04.1.1011.deb
+
+    sudo dpkg -i chromium-browser_56.0.2924.84-0ubuntu0.14.04.1.1011.deb
+
+    reboot
 
 
 
