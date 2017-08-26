@@ -6,7 +6,7 @@ I used to make a disk image installer for Mac. And while it worked, it was a hea
     Evan Hahn - Install a list of Atom packages from a file
 </a>
 
-[Evan Hahn - Install a list of Atom packages from a file](ttps://evanhahn.com/atom-apm-install-list/){:target="_blank"}
+[Evan Hahn - Install a list of Atom packages from a file](https://evanhahn.com/atom-apm-install-list/){:target="_blank"}
 
 This solves a heck of a lot, but more importantly - make it easier to install on both [Mac](#mac-install) & [Windows](#windows-install).
 
