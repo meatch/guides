@@ -4,7 +4,7 @@ I used to make a disk image installer for Mac. And while it worked, it was a hea
 
 https://evanhahn.com/atom-apm-install-list/
 
-This solves a heck of a lot, but more importantly - make it easier to install on both [Mac](#mac) & [Windows](#win).
+This solves a heck of a lot, but more importantly - make it easier to install on both [Mac ](#mac-install) & [Windows](#win-install).
 
 
 ## Mac Install
@@ -97,10 +97,10 @@ I have only provided the bare essentials to get us up and running and there is a
 ## Some Packages Require Node.js
 **PLEASE NOTE:** Some packages require the installation of Node to run. Node is a JS application that is very popular these days, and certainly worth installing if you are going to be doing web development.
 
-Use the installer for your System:
+Use the installer for your Operating System:
 
-* [ Mac: Which System am I on ](https://support.apple.com/en-us/HT201260)
-* [ Windows: Which System am I on ](https://support.microsoft.com/en-us/help/13443/windows-which-operating-system)
+* [ Which version of **Mac** am I running? ](https://support.apple.com/en-us/HT201260)
+* [ Which version of **Windows** am I running? ](https://support.microsoft.com/en-us/help/13443/windows-which-operating-system)
 
 [Install Node for Mac or Windows](https://nodejs.org/en/download/)
 
