@@ -11,7 +11,7 @@ This solves a heck of a lot, but more importantly - make it easier to install on
 * [Mac Install](#mac-install)
 * [Windows Install](#windows-install)
 * [For Those That Want To Know More](#for-those-that-want-to-know-more)
-* [Some Packages Require Node.js](#some-packages-require-node.js)
+* [Some Packages Require Node.js](#some-packages-require-nodejs)
 * [Why Wonder Woman](#why-wonder-woman)
 
 
