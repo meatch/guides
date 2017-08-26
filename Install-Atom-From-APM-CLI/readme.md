@@ -1,8 +1,11 @@
 # Atom Installation Wonder Woman Edition
 
 I used to make a disk image installer for Mac. And while it worked, it was a heavy application to download and install. And I had to keep updating it as Atom and I evolved. Then I found this amazing article on how to use Atom's Package Manager CLI to install Snippets, Shortcuts, and packages on the fly.
-
-https://evanhahn.com/atom-apm-install-list/
+<a
+    target="evanhahn-atominstall"
+    href="https://evanhahn.com/atom-apm-install-list/">
+        Evan Hahn - Install a list of Atom packages from a file
+</a>
 
 This solves a heck of a lot, but more importantly - make it easier to install on both [Mac](#mac-install) & [Windows](#windows-install).
 
@@ -145,4 +148,4 @@ Use the installer for your Operating System:
 
 # Why Wonder Woman?
 
-My last 2 installers were Iron Man (Sublime) and Batman (Atom). Just seemed fitting she would take on this new approach to installing Atom with my favorite shortcuts, packages and snippets. And since she saved the DC franchise in the theaters, I think she will hold the space here for quite some time.
+My last 2 installers were Iron Man (Sublime) and Batman (Atom). Just seemed fitting she would take on this new approach to installing Atom with my favorite shortcuts, packages and snippets. And since she saved the DC franchise in theaters, I think she will hold the space here for quite some time.
