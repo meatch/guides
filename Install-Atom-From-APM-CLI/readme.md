@@ -2,7 +2,7 @@
 
 I used to make a disk image installer for Mac. And while it worked, it was a heavy application to download and install. And I had to keep updating it as Atom and I evolved. Then I found this amazing article on how to use Atom's Package Manager CLI to install Snippets, Shortcuts, and packages on the fly.
 
-<a href="https://evanhahn.com/atom-apm-install-list/">
+<a href="https://evanhahn.com/atom-apm-install-list/" target="_blank">
     Evan Hahn - Install a list of Atom packages from a file
 </a>
 
@@ -19,7 +19,7 @@ This solves a heck of a lot, but more importantly - make it easier to install on
 
 ## Mac Install
 
-1. Download and Install <a href="https://atom.io/" >Atom</a>
+1. Download and Install <a href="https://atom.io/" target="atom">Atom</a>
 
 2. Open Atom if you have not already, then quit out of it. Make sure its not running, otherwise it won't install packages, snippets and preferences properly
 
@@ -42,7 +42,7 @@ cd ~/;
 
 ## Windows Install
 
-1. Download and Install <a href="https://atom.io/" >Atom</a>
+1. Download and Install <a href="https://atom.io/" target="atom">Atom</a>
 
 2. Open Atom if you have not already, then quit out of it. Make sure its not running, otherwise it won't install packages, snippets and preferences properly
 
@@ -73,7 +73,9 @@ cd ~/;
 Just like it sounds, I have added shortcuts to make it easier to evoke packages and actions. I am editing Atom's built-in keymaps.
 <a
     class="btn btn-primary"
-    href="http://flight-manual.atom.io/behind-atom/sections/keymaps-in-depth/">
+    href="http://flight-manual.atom.io/behind-atom/sections/keymaps-in-depth/"
+    target="keymaps"
+    >
     More about keymaps
 </a>
 
@@ -82,7 +84,9 @@ Just like it sounds, I have added shortcuts to make it easier to evoke packages 
 Snippets allows us to trigger repetivie blocks of code - to speed up how we develop. Writing the same code over and over again, snippets are a great way to save you time and carpal tunnel. I am editing Atom's built-in snippets.
 <a
     class="btn btn-primary"
-    href="http://flight-manual.atom.io/using-atom/sections/snippets/">
+    href="http://flight-manual.atom.io/using-atom/sections/snippets/"
+    target="snippets"
+    >
     More about snippets
 </a>
 
@@ -93,7 +97,9 @@ Atom is open source, which means there is a community of developers adding to it
 I have only provided the bare essentials to get us up and running and there is a whole lot more Atom can do - you may just have to search for the package that fits your needs.
 <a
     class="btn btn-primary"
-    href="http://flight-manual.atom.io/using-atom/sections/atom-packages/">
+    href="http://flight-manual.atom.io/using-atom/sections/atom-packages/"
+    target="packages"
+    >
     More about packages
 </a>
 
