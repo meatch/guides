@@ -14,7 +14,7 @@ This solves a heck of a lot, but more importantly - make it easier to install on
 2. Open Terminal (Location: /Applications/Utilities/Terminal)
 
 3. Run the Terminal commands below by copying, pasting, and pressing return
-    * *Takes time-depending on your internet speed (has to download all the plugins)*
+    * *Get a cup-o-coffee...takes time-depending on your internet speed (has to download all the plugins)*
 
 ```
 cd ~/.atom/;
@@ -26,7 +26,7 @@ rm -rf my_atom_packages.txt;
 cd ~/;
 ```
 
-4. If Atom is running, close and relaunch Atom for your new plugins to apply.
+4. If Atom is running, close and relaunch Atom to see additions
 
 
 ## Windows Install
