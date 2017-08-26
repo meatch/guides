@@ -2,11 +2,7 @@
 
 I used to make a disk image installer for Mac. And while it worked, it was a heavy application to download and install. And I had to keep updating it as Atom and I evolved. Then I found this amazing article on how to use Atom's Package Manager CLI to install Snippets, Shortcuts, and packages on the fly.
 
-<a
-    target="evanhahn"
-    href="https://evanhahn.com/atom-apm-install-list/">
-        Evan Hahn - Install a list of Atom packages from a file
-</a>
+<a target="evanhahn" href="https://evanhahn.com/atom-apm-install-list/">Evan Hahn - Install a list of Atom packages from a file</a>
 
 This solves a heck of a lot, but more importantly - make it easier to install on both [Mac](#mac-install) & [Windows](#windows-install).
 
