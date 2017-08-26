@@ -1,0 +1,17 @@
+atom-beautify
+atom-wrap-in-tag
+auto-detect-indentation
+auto-update-packages
+default-language
+duplicate-line-or-selection
+emmet
+emmet-snippets-compatibility
+file-icons
+highlight-selected
+jshint
+multi-cursor
+native-color-picker
+platformio-ide-terminal
+project-manager
+simple-panes
+sass-autocompile
