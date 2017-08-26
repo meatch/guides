@@ -11,9 +11,11 @@ This solves a heck of a lot, but more importantly - make it easier to install on
 
 1. Download and Install <a href="https://atom.io/" target="atom">Atom</a>
 
-2. Open Terminal (Location: /Applications/Utilities/Terminal)
+2. Open Atom if you have not already, then quit out of it. Make sure its not running, otherwise it won't install plugins, snippets and preferences properly
 
-3. Run the Terminal commands below by copying, pasting, and pressing return
+3. Open Terminal (Location: /Applications/Utilities/Terminal)
+
+4. Run the Terminal commands below by copying, pasting, and pressing return
     * *Get a cup-o-coffee...takes time-depending on your internet speed (has to download all the plugins)*
 
 ```
@@ -26,14 +28,32 @@ rm -rf my_atom_packages.txt;
 cd ~/;
 ```
 
-4. If Atom is running, close and relaunch Atom to see additions
-
+5. Relaunch Atom and have fun
 
 ## Windows Install
 
 1. Download and Install <a href="https://atom.io/" target="atom">Atom</a>
 
-2. sdfkjn
+2. Open Atom if you have not already, then quit out of it. Make sure its not running, otherwise it won't install plugins, snippets and preferences properly
+
+3. Open Windows Command Prompt (Click lower left search bar and type "Command Prompt")
+
+4. Run the Terminal commands below by copying, pasting, and pressing return
+    * *Get a cup-o-coffee...takes time-depending on your internet speed (has to download all the plugins)*
+
+```
+cd ~/.atom/;
+cd %HOMEPATH%\.atom
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/meatch/guides/master/Install-Atom-From-APM-CLI/snippets.cson', 'snippets.cson') }"
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/meatch/guides/master/Install-Atom-From-APM-CLI/keymap.cson', 'keymap.cson') }"
+cd %HOMEPATH%\AppData\Local\atom\app-*\resources\cli
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/meatch/guides/master/Install-Atom-From-APM-CLI/my_atom_packages.txt', 'my_atom_packages.txt') }"
+apm install --packages-file my_atom_packages.txt
+cd %HOMEPATH%
+cd ~/;
+```
+
+5. Relaunch Atom and have fun
 
 ---
 
@@ -42,5 +62,3 @@ cd ~/;
 ## Why Wonder Woman?
 
 My last 2 installers were Iron Man (Sublime) and Batman (Atom). Just seemed fitting she would take on this new approach to installing Atom with my favorite shortcuts, plugins and snippets. And since she saved the DC franchise in the theaters, I think she will hold the space here for quite some time.
-
-
