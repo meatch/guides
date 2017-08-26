@@ -9,5 +9,4 @@ highlight-selected
 jshint
 multi-cursor
 native-color-picker
-project-manager
 simple-panes
