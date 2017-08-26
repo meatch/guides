@@ -93,10 +93,13 @@ I have only provided the bare essentials to get us up and running and there is a
     More about packages
 </a>
 
-> PLEASE NOTE: Some packages require the installation of Node to run. Node is a JS application that is very popular these days, and certainly worth installing if you are going to be doing web development.
-> * [Install Node for Mac or Windows](https://nodejs.org/en/download/) Use the installer for your System
-> * [ Mac: Which System am I On ](https://support.apple.com/en-us/HT201260)
-> * [ Windows: Which System am I On ](https://support.microsoft.com/en-us/help/13443/windows-which-operating-system)
+
+## Some Packages Require Node.js
+**PLEASE NOTE:** Some packages require the installation of Node to run. Node is a JS application that is very popular these days, and certainly worth installing if you are going to be doing web development.
+
+* [Install Node for Mac or Windows](https://nodejs.org/en/download/) Use the installer for your System
+* [ Mac: Which System am I On ](https://support.apple.com/en-us/HT201260)
+* [ Windows: Which System am I On ](https://support.microsoft.com/en-us/help/13443/windows-which-operating-system)
 
 
 ### Essential Packages
