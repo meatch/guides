@@ -42,6 +42,6 @@ This solves a heck of a lot, but more importantly - make it easier to install on
 
 ## Why Wonder Woman?
 
-My last 2 installers were Iron Man (Sublime) and Batman (Atom). Just seemed fitting she would take on this new approach. And since she saved the DC franchise in the theaters, I think she will hold the space here for quite some time.
+My last 2 installers were Iron Man (Sublime) and Batman (Atom). Just seemed fitting she would take on this new approach to installing Atom with my favorite plugins and snippets. And since she saved the DC franchise in the theaters, I think she will hold the space here for quite some time.
 
 
