@@ -1,0 +1,157 @@
+# Your snippets
+#
+# Atom snippets allow you to enter a simple prefix in the editor and hit tab to
+# expand the prefix into a larger code block with templated values.
+#
+# You can create a new snippet in this file by typing "snip" and then hitting
+# tab.
+#
+# An example CoffeeScript snippet to expand log to console.log:
+#
+# '.source.coffee':
+#	 'Console log':
+#		 'prefix': 'log'
+#		 'body': 'console.log $1'
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it here:
+# https://github.com/bevry/cson#what-is-cson
+
+# -----------------------------------------------------------
+# HTML
+# -----------------------------------------------------------
+'.text.html.basic,.text.php':
+	'CSS External Link':
+		'prefix': 'link'
+		'body': '<link rel="stylesheet" href="$1">'
+	'Div Correction':
+		'prefix': 'div'
+		'body': '<div>$1</div>'
+	'Header Correction':
+		'prefix': 'header'
+		'body': '<header>$1</header>'
+	'Nav Correction':
+		'prefix': 'nav'
+		'body': '<nav>$1</nav>'
+	'Main Correction':
+		'prefix': 'main'
+		'body': '<main>$1</main>'
+	'Article Correction':
+		'prefix': 'article'
+		'body': '<article>$1</article>'
+	'Aside Correction':
+		'prefix': 'aside'
+		'body': '<aside>$1</aside>'
+	'Meta Viewport Responsive':
+		'prefix': 'viewp'
+		'body': '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+	'Style Embedded':
+		'prefix': 'style'
+		'body': """<style>
+                	$1
+                </style>"""
+	'Script Embed':
+		'prefix': 'scr'
+		'body': """<script>
+						$1
+					</script>"""
+	'Script Source':
+		'prefix': 'scrs'
+		'body': '<script src="$1"></script>'
+	'Simple HTML':
+		'prefix': 'htmls'
+		'body': """<html>
+                	<head>
+                        <title>$1</title>
+                	</head>
+                	<body>
+                		<h1>$1</h1>
+                	</body>
+                </html>"""
+	'Full HTML':
+		'prefix': 'htmlf'
+		'body': """<!doctype html>
+		<html lang="en">
+		    <head>
+		        <meta charset="utf-8">
+		        <title>$1</title>
+		        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		        <style>
+
+		        </style>
+		    </head>
+		    <body>
+		        <div class="container">
+		            <h1>$1</h1>
+
+		        </div>
+
+		        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		        <script>
+		            $2
+		        </script>
+		    </body>
+		</html>"""
+	'Image Simplified':
+		'prefix': 'img'
+		'body': '<img src="$1"$2>$3'
+
+# -----------------------------------------------------------
+# CSS, Sass and JS
+# -----------------------------------------------------------
+'.source.js,.source.css,.source.scss,.text.php,.source.gfm,.text.plain':
+	'Comment Title Block Large':
+		'prefix': 'c1'
+		'body': """/*-------------------------------------
+            ||
+            || ${1:title}
+            ||
+            -------------------------------------*/$2
+            """
+	'Comment Title Block':
+		'prefix': 'c2'
+		'body': """/*-------------------------------------
+            | ${1:title}
+            -------------------------------------*/$2
+            """
+	'Comment Title Block Single':
+		'prefix': 'c3'
+		'body': """/* ${1:title} -------------------------------*/$2
+            """
+
+# -----------------------------------------------------------
+# CSS
+# -----------------------------------------------------------
+'.source.css, .source.scss':
+	'Clearfix Hack':
+		'prefix': 'cf'
+		'body': '.cf:before, .cf:after { content: " "; display: table; }\n.cf:after { clear: both; }\n.cf { *zoom: 1; }\n\n$1'
+	'Background Color':
+		'prefix': 'bgcol'
+		'body': 'background-color: $1;'
+	'Box Shadow':
+		'prefix': 'bxsh'
+		'body': 'box-shadow: 3px 3px 10px rgba(0, 0, 0, ${1:0.12});'
+	'Border':
+		'prefix': 'bord'
+		'body': 'border: solid ${1:1px} ${2:red};'
+	'Absolute Centering':
+		'prefix': 'abscent'
+		'body': """position: absolute;
+				left: 50%; top: 50%;
+				transform: translate(-50%, -50%);
+		"""
+
+# -----------------------------------------------------------
+# JavaScript
+# -----------------------------------------------------------
+'.source.js':
+	'console.log':
+		'prefix': 'log'
+		'body': 'console.log(${1:test});$2'
+	'docready':
+		'prefix': 'docready'
+		'body': """$(document).ready(function(){
+				$1
+			});"""
