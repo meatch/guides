@@ -1,0 +1,67 @@
+# Your keymap
+#
+# Atom keymaps work similarly to style sheets. Just as style sheets use
+# selectors to apply styles to elements, Atom keymaps use selectors to associate
+# keystrokes with events in specific contexts.
+#
+# You can create a new keybinding in this file by typing "key" and then hitting
+# tab.
+#
+# Here's an example taken from Atom's built-in keymap:
+#
+# 'atom-text-editor':
+#   'enter': 'editor:newline'
+#
+# 'atom-workspace':
+#   'ctrl-shift-p': 'core:move-up'
+#   'ctrl-p': 'core:move-down'
+#
+# You can find more information about keymaps in these guides:
+# * https://atom.io/docs/latest/using-atom-basic-customization#customizing-key-bindings
+# * https://atom.io/docs/latest/behind-atom-keymaps-in-depth
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it here:
+# https://github.com/bevry/cson#what-is-cson
+#
+
+
+# ------------------------------------------------------
+#  Atom General
+# ------------------------------------------------------
+'atom-text-editor':
+  'shift-ctrl-w': 'editor:toggle-soft-wrap'
+
+# ------------------------------------------------------
+#  Color Pickers
+# ------------------------------------------------------
+'.platform-darwin .workspace .editor':
+    'shift-alt-C': 'color-picker:open'
+    'shift-cmd-C': 'native-color-picker:pick'
+    'shift-cmd-U': 'spell-check:correct-misspelling'
+
+
+# ------------------------------------------------------
+#  Add a New File to Tree View, or subfolder path
+# ------------------------------------------------------
+'body':
+	'cmd-alt-n': 'tree-view:add-file'
+
+# ------------------------------------------------------
+#  get rid of shift space expander for emmet.
+# ------------------------------------------------------
+'.platform-darwin .editor':
+	'shift-space': 'custom:space'
+
+# ------------------------------------------------------
+#  Correct Conflict between Emmet, Autocompletion, and Snippets for Tabs
+# ------------------------------------------------------
+# Stop emmet from hijacking tab from snippets and autocomplete
+'atom-text-editor.autocomplete-active:not([mini])':
+	'tab': 'autocomplete-plus:confirm'
+
+# Stop emmet from hijacking tab from snippet tab stops
+'atom-text-editor[data-grammar="text html basic"]:not([mini]), atom-text-editor[data-grammar~="jade"]:not([mini]), atom-text-editor[data-grammar~="css"]:not([mini]), atom-text-editor[data-grammar~="sass"]:not([mini])':
+	'tab': 'snippets:next-tab-stop'
+
+
