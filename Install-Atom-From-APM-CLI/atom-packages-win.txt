@@ -8,11 +8,5 @@ file-icons
 highlight-selected
 jshint
 multi-cursor
-native-color-picker
-project-manager
 simple-panes
-
-sass-autocompile
-auto-update-packages
-platformio-ide-terminal
-atom-beautify
+color-picker

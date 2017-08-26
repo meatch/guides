@@ -8,5 +8,5 @@ file-icons
 highlight-selected
 jshint
 multi-cursor
-native-color-picker
 simple-panes
+native-color-picker
