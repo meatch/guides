@@ -21,11 +21,11 @@ This solves a heck of a lot, but more importantly - make it easier to install on
 
 1. Download and Install <a href="https://atom.io/" target="atom">Atom</a>
 
-2. Open Atom if you have not already, then quit out of it. Make sure its not running, otherwise it won't install packages, snippets and preferences properly
+2. Open Atom and choose ***Atom > Install Shell Commands*** from the upper left menu
 
-3. Open Terminal (Location: /Applications/Utilities/Terminal)
+3. Open ***Terminal*** (Location: /Applications/Utilities/Terminal)
 
-4. Run the Terminal commands below by copying, pasting, and pressing return
+4. Run the commands below by copying, pasting, and pressing return
     * *Get a cup-o-coffee...takes time-depending on your internet speed (has to download all the packages)*
 
 ```
@@ -44,11 +44,9 @@ cd ~/;
 
 1. Download and Install <a href="https://atom.io/" target="atom">Atom</a>
 
-2. Open Atom if you have not already, then quit out of it. Make sure its not running, otherwise it won't install packages, snippets and preferences properly
+2. Open ***Windows Command Prompt*** (Click lower left search bar and type "Command Prompt")
 
-3. Open Windows Command Prompt (Click lower left search bar and type "Command Prompt")
-
-4. Run the Terminal commands below by copying, pasting, and pressing return
+3. Run the commands below by copying, pasting, and pressing return
     * *Get a cup-o-coffee...takes time-depending on your internet speed (has to download all the packages)*
 
 ```
