@@ -10,3 +10,4 @@ jshint
 multi-cursor
 simple-panes
 color-picker
+platformio-ide-terminal

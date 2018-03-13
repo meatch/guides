@@ -97,6 +97,16 @@ Install phpMyAdmin  -I use sequel pro  -I may use PhpMyAdmin for other things in
 
 
 ### Mac Virtual Hosts
+Every time Mac updates it seems to replace my configuration. Kills my apps.
+
+Had to update httpd.conf
+uncomment a few lines
+add Allow All to <Document> in a couple of places. See link below.
+
+Updated for Mac OS High Sierra
+http://www.epigroove.com/blog/laravel-routes-not-working-make-sure-htaccess-is-working
+
+This guy helped me separate my vhost for each account. Super cool.
 https://jason.pureconcepts.net/2014/11/configure-apache-virtualhost-mac-os-x/
 
 1. Update Appache config httpd.config
