@@ -11,3 +11,4 @@ multi-cursor
 simple-panes
 color-picker
 platformio-ide-terminal
+atom-beautify

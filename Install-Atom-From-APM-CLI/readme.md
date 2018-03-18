@@ -113,6 +113,8 @@ I have only provided the bare essentials to get us up and running and there is a
 * jshint
 * multi-cursor
 * simple-panes
+* atom-beautify
+* platformio-ide-terminal
 
 ### Mac Specific
 * native-color-picker
@@ -124,8 +126,6 @@ I have only provided the bare essentials to get us up and running and there is a
 * project-manager
 * sass-autocompile
 * auto-update-packages
-* platformio-ide-terminal
-* atom-beautify
 
 ---
 
