@@ -104,7 +104,6 @@ I have only provided the bare essentials to get us up and running and there is a
 ### Essential Packages
 * atom-wrap-in-tag
 * auto-detect-indentation
-* default-language
 * duplicate-line-or-selection
 * emmet
 * emmet-snippets-compatibility
@@ -117,6 +116,7 @@ I have only provided the bare essentials to get us up and running and there is a
 * platformio-ide-terminal
 
 ### Mac Specific
+* default-language
 * native-color-picker
 
 ### Win Specific

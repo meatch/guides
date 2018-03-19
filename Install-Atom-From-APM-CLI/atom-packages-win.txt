@@ -1,6 +1,5 @@
 atom-wrap-in-tag
 auto-detect-indentation
-default-language
 duplicate-line-or-selection
 emmet
 emmet-snippets-compatibility
