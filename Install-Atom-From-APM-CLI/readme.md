@@ -50,7 +50,6 @@ cd ~/;
     * *Get a cup-o-coffee...takes time-depending on your internet speed (has to download all the packages)*
 
 ```
-cd ~/.atom/;
 cd %HOMEPATH%\.atom
 powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/meatch/guides/master/Install-Atom-From-APM-CLI/snippets.cson', 'snippets.cson') }"
 powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/meatch/guides/master/Install-Atom-From-APM-CLI/keymap.cson', 'keymap.cson') }"
@@ -58,7 +57,6 @@ cd %HOMEPATH%\AppData\Local\atom\app-*\resources\cli
 powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/meatch/guides/master/Install-Atom-From-APM-CLI/atom-packages-win.txt', 'atom-packages-win.txt') }"
 apm install --packages-file atom-packages-win.txt
 cd %HOMEPATH%
-cd ~/;
 ```
 
 5. Relaunch Atom and have fun

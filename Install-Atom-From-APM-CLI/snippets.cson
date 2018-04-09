@@ -59,7 +59,7 @@
 		'prefix': 'scrs'
 		'body': '<script src="$1"></script>'
 	'Simple HTML':
-		'prefix': 'htmls'
+		'prefix': 'html'
 		'body': """<html>
                 	<head>
                         <title>$1</title>
