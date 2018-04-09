@@ -1,4 +1,3 @@
-atom-beautify
 atom-wrap-in-tag
 auto-detect-indentation
 auto-update-packages

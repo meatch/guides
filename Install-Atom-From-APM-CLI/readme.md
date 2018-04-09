@@ -102,6 +102,8 @@ I have only provided the bare essentials to get us up and running and there is a
 ### Essential Packages
 * atom-wrap-in-tag
 * auto-detect-indentation
+* auto-update-packages
+* default-language
 * duplicate-line-or-selection
 * emmet
 * emmet-snippets-compatibility
@@ -109,21 +111,19 @@ I have only provided the bare essentials to get us up and running and there is a
 * highlight-selected
 * jshint
 * multi-cursor
-* simple-panes
-* atom-beautify
 * platformio-ide-terminal
+* simple-panes
+* symbols-tree-view
+* project-manager
 
 ### Mac Specific
-* default-language
 * native-color-picker
 
 ### Win Specific
 * color-picker
 
 ### Nice to Have
-* project-manager
-* sass-autocompile
-* auto-update-packages
+* atom-beautify
 
 ---
 

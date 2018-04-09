@@ -12,5 +12,4 @@ platformio-ide-terminal
 simple-panes
 symbols-tree-view
 project-manager
-native-color-picker
 color-picker
