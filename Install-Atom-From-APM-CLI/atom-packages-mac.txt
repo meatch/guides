@@ -9,8 +9,6 @@ emmet-snippets-compatibility
 file-icons
 highlight-selected
 jshint
-linter
-linter-eslint
 multi-cursor
 platformio-ide-terminal
 simple-panes
