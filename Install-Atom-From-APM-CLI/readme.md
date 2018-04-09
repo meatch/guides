@@ -42,6 +42,10 @@ cd ~/;
 
 ## Windows Install
 
+<a href="https://enspyred.com/assets/repo/Windows-Install-Web-Software/2-Atom.mp4" target="windows-atom-video">
+	Install Atom for Windows Video
+</a>
+
 1. Download and Install <a href="https://atom.io/" target="atom">Atom</a>
 
 2. Open ***Windows Command Prompt*** (Click lower left search bar and type "Command Prompt")
