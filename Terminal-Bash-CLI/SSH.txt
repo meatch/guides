@@ -1,0 +1,50 @@
+SSH
+
+exit to quit out
+
+/************************
+Common Commands
+*************************/
+http://www.servermom.org/top-most-used-common-ssh-commands/56/
+http://kb.mediatemple.net/questions/247/Common+SSH+Commands#gs
+
+cd /folder/path || change directory
+cd ~ || go to home
+cd - || ast directory you were in
+cd .. || up a directory
+pwd || list full path to current dir (print working directory)
+
+ls || list files and folders in current dir
+ls -al || with info
+ls -alh || and file size
+ls *.com || by extension
+
+/************************
+Duplicated Directory :: e.g. duplicate Live to Testing server
+cp -r [directory] [new directory]
+*************************/
+1) CAREFUL :: Be sure to remove old test folder
+	mv test.lamodern.com old.lamodern.com
+2) The duplicate httpdocs and rename to test...this also preserves permissions
+	rsync -a httpdocs test.lamodern.com
+
+takes some time - la modern is big.
+
+
+/************************
+CAREFUL :: Delete Directory :: and all files within
+rm -r -f YourDirectory
+*************************/
+rm -r -f test.lamodern.com
+rm -r -f old.lamodern.com
+
+
+/************************
+Back Up Website > Tar for download
+Saves to the same dir
+*************************/
+tar cvf lamodern.tar httpdocs
+
+
+
+
