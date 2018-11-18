@@ -1,0 +1,14 @@
+{
+	"folders":
+	[
+		{
+			"path": "/usr/local/etc/httpd/extra/vhosts"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "/Users/meatch/meatch_prefs"
+		}
+	]
+}
